@@ -1,0 +1,81 @@
+﻿@model IEnumerable<Student.Models.StudentDataModel>
+
+@{
+    ViewBag.Title = "GetAllStudents";
+}
+
+<h2>GetAllStudents</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HostelID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RollNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HostelData.HostelName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HostelData.Block)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HostelData.RoomNumber)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HostelID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RollNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HostelData.HostelName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HostelData.Block)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HostelData.RoomNumber)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "HostelName", new { id = item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

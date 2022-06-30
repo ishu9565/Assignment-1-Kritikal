@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="StudentDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="HostelData">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HostelName" Type="varchar" MaxLength="50" />
+          <Property Name="Block" Type="varchar" MaxLength="50"  />
+          <Property Name="RoomNumber" Type="int" />
+        </EntityType>
+        <EntityType Name="StudentData">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="HostelID" Type="int" />
+          <Property Name="RollNumber" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_StudentData_HostelData">
+          <End Role="HostelData" Type="Self.HostelData" Multiplicity="0..1" />
+          <End Role="StudentData" Type="Self.StudentData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HostelData">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="StudentData">
+              <PropertyRef Name="HostelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="StudentDBModelStoreContainer">
+          <EntitySet Name="HostelData" EntityType="Self.HostelData" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StudentData" EntityType="Self.StudentData" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_StudentData_HostelData" Association="Self.FK_StudentData_HostelData">
+            <End Role="HostelData" EntitySet="HostelData" />
+            <End Role="StudentData" EntitySet="StudentData" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="StudentDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="HostelData">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HostelName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Block" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RoomNumber" Type="Int32"  />
+          <NavigationProperty Name="StudentData" Relationship="Self.FK_StudentData_HostelData" FromRole="HostelData" ToRole="StudentData" />
+        </EntityType>
+        <EntityType Name="StudentData">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="HostelID" Type="Int32" />
+          <Property Name="RollNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="HostelData" Relationship="Self.FK_StudentData_HostelData" FromRole="StudentData" ToRole="HostelData" />
+        </EntityType>
+        <Association Name="FK_StudentData_HostelData">
+          <End Role="HostelData" Type="Self.HostelData" Multiplicity="0..1" />
+          <End Role="StudentData" Type="Self.StudentData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HostelData">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="StudentData">
+              <PropertyRef Name="HostelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="StudentDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="HostelData" EntityType="Self.HostelData" />
+          <EntitySet Name="StudentData" EntityType="Self.StudentData" />
+          <AssociationSet Name="FK_StudentData_HostelData" Association="Self.FK_StudentData_HostelData">
+            <End Role="HostelData" EntitySet="HostelData" />
+            <End Role="StudentData" EntitySet="StudentData" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="StudentDBModelStoreContainer" CdmEntityContainer="StudentDBEntities">
+          <EntitySetMapping Name="HostelData">
+            <EntityTypeMapping TypeName="StudentDBModel.HostelData">
+              <MappingFragment StoreEntitySet="HostelData">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="HostelName" ColumnName="HostelName" />
+                <ScalarProperty Name="Block" ColumnName="Block" />
+                <ScalarProperty Name="RoomNumber" ColumnName="RoomNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StudentData">
+            <EntityTypeMapping TypeName="StudentDBModel.StudentData">
+              <MappingFragment StoreEntitySet="StudentData">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="HostelID" ColumnName="HostelID" />
+                <ScalarProperty Name="RollNumber" ColumnName="RollNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

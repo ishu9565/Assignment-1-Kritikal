@@ -1,0 +1,5 @@
+D:\Studentapp\Student.Models\bin\Debug\Student.Models.dll
+D:\Studentapp\Student.Models\bin\Debug\Student.Models.pdb
+D:\Studentapp\Student.Models\obj\Debug\Student.Models.dll
+D:\Studentapp\Student.Models\obj\Debug\Student.Models.pdb
+D:\Studentapp\Student.Models\obj\Debug\Student.Models.csprojResolveAssemblyReference.cache

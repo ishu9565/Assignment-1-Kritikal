@@ -1,0 +1,12 @@
+D:\Studentapp\StudentappDB\bin\Debug\StudentappDB.dll
+D:\Studentapp\StudentappDB\bin\Debug\StudentappDB.pdb
+D:\Studentapp\StudentappDB\obj\Debug\StudentappDB.csprojResolveAssemblyReference.cache
+D:\Studentapp\StudentappDB\obj\Debug\StudentappDB.dll
+D:\Studentapp\StudentappDB\obj\Debug\StudentappDB.pdb
+D:\Studentapp\StudentappDB\bin\Debug\StudentappDB.dll.config
+D:\Studentapp\StudentappDB\bin\Debug\EntityFramework.dll
+D:\Studentapp\StudentappDB\bin\Debug\EntityFramework.SqlServer.dll
+D:\Studentapp\StudentappDB\bin\Debug\Student.Models.dll
+D:\Studentapp\StudentappDB\bin\Debug\Student.Models.pdb
+D:\Studentapp\StudentappDB\bin\Debug\EntityFramework.xml
+D:\Studentapp\StudentappDB\bin\Debug\EntityFramework.SqlServer.xml

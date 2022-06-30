@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="StudentDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="HostelData">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HostelName" Type="varchar" MaxLength="50" />
+    <Property Name="Block" Type="varchar" MaxLength="50" />
+    <Property Name="RoomNumber" Type="int" />
+  </EntityType>
+  <EntityType Name="StudentData">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="HostelID" Type="int" />
+    <Property Name="RollNumber" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_StudentData_HostelData">
+    <End Role="HostelData" Type="Self.HostelData" Multiplicity="0..1" />
+    <End Role="StudentData" Type="Self.StudentData" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HostelData">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="StudentData">
+        <PropertyRef Name="HostelID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="StudentDBModelStoreContainer">
+    <EntitySet Name="HostelData" EntityType="Self.HostelData" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StudentData" EntityType="Self.StudentData" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_StudentData_HostelData" Association="Self.FK_StudentData_HostelData">
+      <End Role="HostelData" EntitySet="HostelData" />
+      <End Role="StudentData" EntitySet="StudentData" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
